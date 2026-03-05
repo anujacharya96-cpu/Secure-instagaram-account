@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login to Secure Account</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(120deg,#000,#240046,#3c096c);
+}
+
+/* Login Box */
+.login-box{
+    padding:40px;
+    width:320px;
+    border-radius:18px;
+    text-align:center;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 25px rgba(255,0,150,0.4);
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 15px #ff00ff;
+    }
+    to{
+        box-shadow:0 0 35px #00ffff;
+    }
+}
+
+h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    background:black;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background: linear-gradient(90deg,#ff00ff,#00ffff);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* Flex share button */
+.share-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:8px 15px;
+    border-radius:20px;
+    border:none;
+    background: hotpink;
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h2>Login to Secure Account</h2>
+
+<input type="text" id="username" placeholder="Username / Email">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="saveLogin()">Login & Save</button>
+</div>
+
+<button class="share-btn" onclick="flexInfo()">Info</button>
+
+<script>
+function saveLogin(){
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    localStorage.setItem("user",user);
+    localStorage.setItem("pass",pass);
+
+    alert("Saved 😎");
+}
+
+function flexInfo(){
+    let u = localStorage.getItem("user");
+    let p = localStorage.getItem("pass");
+
+    alert("Saved Info\nUsername: "+u+"\nPassword: "+p);
+}
+
+window.onload = function(){
+    if(localStorage.getItem("user")){
+        document.getElementById("username").value =
+        localStorage.getItem("user");
+
+        document.getElementById("password").value =
+        localStorage.getItem("pass");
+    }
+}
+</script>
+
+</body>
+</html>
